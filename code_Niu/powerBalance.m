@@ -3,7 +3,11 @@
 %% Objective: minimize the total power for CDMA system
 clear; clc;
 %% ======Parameters========
-N_users = 10;  % the number of users.
+r_N = [];
+for N_users = 4:2:20  % the number of users.
+r_acc = 0;
+    for iter = 1:500
+
 u_distance = 100;  %%all the users are distributed in a 100 * 100 square
 k_center = 2; %% the number of base stations.
 centerpoint = u_distance*rand(k_center,2);
@@ -27,25 +31,35 @@ end
 %------the matrix G = [D_11 D_12 бнбн D_1,N_users; D_21 D_22 бнбн D_2,N_users;бнбн]
 for u_row = 1:N_users  
     for u_col = 1:N_users
-%         if norm(all_users(u_col,:)-centerpoint(label(u_row),:))>20
+         if norm(all_users(u_col,:)-centerpoint(label(u_row),:))>20
         G(u_row, u_col) = (norm(all_users(u_row,:)-centerpoint(label(u_row),:))^3)/(norm(all_users(u_col,:)-centerpoint(label(u_row),:))^3) ;
-%         else
-%             G(u_row,u_col) = (norm(all_users(u_row,:)-centerpoint(label(u_row),:))^3)/(20^3);
-%         end
+        else
+            G(u_row,u_col) = (norm(all_users(u_row,:)-centerpoint(label(u_row),:))^3)/(20^3);
+        end
     end
 end
 
-% diag_G = diag(G);
-% for t = 1:length(diag_G)
-%     G(:,t) = G(:,t) *diag_G(t)^(-1);
-% end
-G = G-eye(N_users);
-[P_all,Y] = eig(G);
-[maxY, index_max] = max(diag(Y));
-p = P_all(:,index_max);
-r = 1/(max(diag(maxY)));
-if p(1)<0
-p = -1*p;
+%%
+%----find positive eigen value(r) and eigenvector(p). 
+% G = G-eye(N_users);
+% [P_all,Y] = eig(G);
+% [maxY, index_max] = max(diag(Y));
+% p = P_all(:,index_max);
+% r = 1/(max(diag(maxY)));
+%     if p(1)<0
+%         p = -1*p;
+%     end
+    [p,r] = funcSINRandPower(G);
+    while db(r)/2<-10
+        interference_all = G*p;
+        [~,max_index_interf] = max(interference_all);
+        G(max_index_interf,:) = [];
+        G(:,max_index_interf) = [];
+        [p,r] = funcSINRandPower(G);
+    end
+        r_acc = r_acc+db(r)/2/500;  % transfer Ratio to dB.
+%%
+    end
+    r_N = [r_N r_acc];
 end
-
 %%
