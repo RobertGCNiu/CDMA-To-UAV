@@ -27,4 +27,18 @@ R.~Nettleton and H.~Alavi, ``Power control for a spread spectrum cellular
   IEEE}, vol.~33.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 1983, pp.
   242--246.
 
+\bibitem{zander1992performance}
+J.~Zander, ``Performance of optimum transmitter power control in cellular radio
+  systems,'' \emph{IEEE transactions on vehicular technology}, vol.~41, no.~1,
+  pp. 57--62, 1992.
+
+\bibitem{grandhi1994constrained}
+S.~A. Grandhi, J.~Zander, and R.~Yates, ``Constrained power control,''
+  \emph{Wireless Personal Communications}, vol.~1, no.~4, pp. 257--270, 1994.
+
+\bibitem{wu1997centralised}
+Q.~Wu, W.-L. Wu, and J.-P. Zhou, ``Centralised power control in cdma cellular
+  mobile systems,'' \emph{Electronics Letters}, vol.~33, no.~2, pp. 115--115,
+  1997.
+
 \end{thebibliography}
