@@ -3,13 +3,21 @@
 %% Objective: minimize the total power for CDMA system
 clear; clc;
 %% ======Parameters========
-r_N = [];
-for N_users = 4:2:20  % the number of users.
-r_acc = 0;
-    for iter = 1:500
+
+ITER = 500;
+users_sets = 10:4:40;
+r_N_remove = zeros(length(users_sets),1); % removing algorithm
+remove_N = zeros(length(users_sets),1); % the removing number
+r_N_move = zeros(length(users_sets),1); % moving algorithm
+for N_users_idex = 1:length(users_sets)  % the number of users.
+    N_users = users_sets(N_users_idex);
+r_acc_remove = 0;
+r_acc_move=0;
+remove_all = 0;
+    for iter = 1:ITER
 
 u_distance = 100;  %%all the users are distributed in a 100 * 100 square
-k_center = 2; %% the number of base stations.
+k_center = 5; %% the number of base stations.
 centerpoint = u_distance*rand(k_center,2);
 all_users = u_distance*rand(N_users,2);
 % plot(all_users(:,1), all_users(:,2),'*'); hold on
@@ -29,37 +37,68 @@ for u = 1:N_users
 end
 %%
 %------the matrix G = [D_11 D_12 бнбн D_1,N_users; D_21 D_22 бнбн D_2,N_users;бнбн]
-for u_row = 1:N_users  
-    for u_col = 1:N_users
-         if norm(all_users(u_col,:)-centerpoint(label(u_row),:))>20
-        G(u_row, u_col) = (norm(all_users(u_row,:)-centerpoint(label(u_row),:))^3)/(norm(all_users(u_col,:)-centerpoint(label(u_row),:))^3) ;
-        else
-            G(u_row,u_col) = (norm(all_users(u_row,:)-centerpoint(label(u_row),:))^3)/(20^3);
-        end
-    end
-end
-
+G = funcGenerateG(all_users, centerpoint, label);
 %%
 %----find positive eigen value(r) and eigenvector(p). 
-% G = G-eye(N_users);
-% [P_all,Y] = eig(G);
-% [maxY, index_max] = max(diag(Y));
-% p = P_all(:,index_max);
-% r = 1/(max(diag(maxY)));
-%     if p(1)<0
-%         p = -1*p;
-%     end
     [p,r] = funcSINRandPower(G);
-    while db(r)/2<-10
-        interference_all = G*p;
+
+    %%
+%----removing the user with maximal interference until the SIR satisfies
+%---------the threshhold
+    remove_user = 0;
+    r_remove = r;
+    p_remove = p;
+    G_remove = G;
+    while db(r_remove)/2<-10
+        remove_user = remove_user +1;
+        interference_all = G_remove*p_remove;
         [~,max_index_interf] = max(interference_all);
-        G(max_index_interf,:) = [];
-        G(:,max_index_interf) = [];
-        [p,r] = funcSINRandPower(G);
+        G_remove(max_index_interf,:) = [];
+        G_remove(:,max_index_interf) = [];
+        [p_remove,r_remove] = funcSINRandPower(G_remove);
     end
-        r_acc = r_acc+db(r)/2/500;  % transfer Ratio to dB.
-%%
+        r_acc_remove = r_acc_remove+db(r_remove)/2/ITER;  % transfer Ratio to dB.
+        remove_all = remove_all + remove_user/ITER;
+        
+    %%
+ %---------moving the user with maximal interference and calculate the new
+ %SIR to check if it satisfies the threshold
+    move_user = 0;
+    r_move = r;
+    p_move = p;
+    flag = 0;
+    G_move= G;
+    while db(r_move)/2<-10
+        r_move_old = r_move;
+        move_user = move_user+1;
+        interference_all = G_move*p_move;
+         [~,max_index_interf] = max(interference_all);
+         r_collect = zeros(k_center,1);
+         for N_center = 1:k_center
+                label(max_index_interf) = N_center;
+                G_move = funcGenerateG(all_users, centerpoint, label);
+                [p_move,r_move] = funcSINRandPower(G_move);
+                r_collect(N_center) = r_move;
+                if db(r_move)/2>-10
+                    flag = 1;
+                    break
+                end
+         end
+         if max(r_collect) ==r_move_old
+             disp('Cannot find the satisfied grouping method');
+             break;
+         end
     end
-    r_N = [r_N r_acc];
+        r_acc_move = r_acc_move+db(r_remove)/2/ITER;  % transfer Ratio to dB.
+
+    end
+    r_N_remove(N_users_idex) = r_acc_remove;
+    remove_N(N_users_idex) = remove_all;
+    r_N_move(N_users_idex) = r_acc_move;
 end
+
+plot(users_sets,r_N_remove);
+hold on
+plot(users_sets, r_N_move); 
+
 %%
