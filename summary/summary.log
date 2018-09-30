@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6800 64-bit) (preloaded format=pdflatex 2018.9.27)  30 SEP 2018 11:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6800 64-bit) (preloaded format=pdflatex 2018.9.27)  30 SEP 2018 13:49
 entering extended mode
 **./summary.tex
 (summary.tex
@@ -586,8 +586,8 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 34.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-LaTeX Warning: Citation `nettleton1983power' on page  undefined on input line 5
-2.
+LaTeX Warning: Citation `grandhi1993centralized' on page  undefined on input li
+ne 52.
 
 [1
 Non-PDF special ignored!
@@ -611,20 +611,7 @@ Underfull \hbox (badness 5189) in paragraph at lines 196--198
 []\OT1/ptm/b/n/10 Stepwise Maximum-Inteference Re-moval Al-go-rithm
  []
 
-(summary.bbl
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.24 \end{thebibliography}
-                          
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-)
+(summary.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -642,13 +629,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 5031 strings out of 492972
- 72909 string characters out of 3126178
- 162151 words of memory out of 3000000
- 8760 multiletter control sequences out of 15000+200000
- 47782 words of font info for 114 fonts, out of 3000000 for 9000
+ 5036 strings out of 492972
+ 72923 string characters out of 3126178
+ 162163 words of memory out of 3000000
+ 8764 multiletter control sequences out of 15000+200000
+ 48918 words of font info for 115 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,14n,29p,1913b,340s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,14n,29p,2027b,340s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Wentao/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.en
 c}<C:/Users/Wentao/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmex10.pfb><C:/Users/Wentao/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
@@ -669,7 +656,7 @@ mes/utmb8a.pfb><C:/Users/Wentao/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/u
 rw/times/utmbi8a.pfb><C:/Users/Wentao/AppData/Local/Programs/MiKTeX 2.9/fonts/t
 ype1/urw/times/utmr8a.pfb><C:/Users/Wentao/AppData/Local/Programs/MiKTeX 2.9/fo
 nts/type1/urw/times/utmri8a.pfb>
-Output written on summary.pdf (3 pages, 197466 bytes).
+Output written on summary.pdf (3 pages, 202537 bytes).
 PDF statistics:
  78 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -1,12 +1,15 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: summary.aux
-I couldn't open database file BDMAref.bib
----line 8 of file summary.aux
- : \bibdata{BDMAref
- :                 }
-I'm skipping whatever remains of this command
 The style file: IEEEtran.bst
-I found no database files---while reading file summary.aux
-Warning--I didn't find a database entry for "nettleton1983power"
+Database file #1: PCAref.bib
+Repeated entry---line 45 of file PCAref.bib
+ : @inproceedings{grandhi1994constrained
+ :                                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 54 of file PCAref.bib
+ : @article{zander1992performance
+ :                               ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "grandhi1993centralized"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
