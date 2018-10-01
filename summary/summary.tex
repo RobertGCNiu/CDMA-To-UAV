@@ -103,10 +103,10 @@ In an actual implementation, it would probably be more difficult to acquire the 
 
 We have neglected the effects of shadow fading in this work, which leads to an optimistic results. We will add the fading at next step.
 
-6. \textit{Proposition:}There exists a unique maximum achievable SIR level:
-\begin{equation*}
-\qquad \gamma^{*} = \max\{\gamma | \exists P\geq 0 : \Gamma_i \geq \gamma, \forall i \}
-\end{equation*}
+\textit{Proposition 1}: There exists a unique maximum achievable SIR level:
+\begin{equation}
+ \gamma^{*} = \max\{\gamma | \exists P\geq 0 : \Gamma_i \geq \gamma, \forall i \}
+\end{equation}
 
 %The maximum is given by  
 %\begin{equation*}
@@ -120,7 +120,7 @@ P_{sum} = \sum_{j=1}^N P_j^U \sum_{k=1}^{L_j} \left[ \frac{d_{jkj}}{d_{jki}}\rig
 The signal from the users thus suffer the signal-to-interference ration at the base station:
 \begin{equation*}
 \Gamma_i^U = \frac{P_i^U}{P_{sum}-P_i^U}
-\end{equation*}.
+\end{equation*}
 Hence,
 \begin{equation}
 \frac{1+\gamma_i^U}{\gamma_i^U}P_i^U = \sum_{j=1}^N P_j^U \sum_{k=1}^{L_j} \left[\frac{d_jkj}{d_jki}\right] ^{\alpha}
