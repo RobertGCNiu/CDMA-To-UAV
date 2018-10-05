@@ -54,7 +54,7 @@ L_{uk} = d_{uk}^3
 \end{equation}
 where $d_{uk}$ is the distance from $u$-th user to $k$-th center.
 
-The SIR $\gamma_1$ of 1st user in 1st cell can be represented as
+The SIR $\gamma_1$ of 1st user in 1st cell, \textit{i.e.} $k_1=1$ can be represented as
 \begin{align}\label{gamma}
 	\gamma_1 &= \frac{P_1/L_{11}}{\sum_{u\neq 1}^{N}P_{u}/L_{u1}} \nonumber\\
 	&= \frac{P_1/L_{11}}{\sum_{u=1}^{N}P_{u}/L_{u1} - P_1/L_{11}} \nonumber\\
@@ -88,7 +88,7 @@ where
 \begin{align}
 \bm{G} = 
 \begin{bmatrix}
-1& L_{11}/L_{21}&\cdots& L_{11}/L_{N1}\\
+1& L_{1k_1}/L_{2k_1}&\cdots& L_{1k_1}/L_{Nk_1}\\
 L_{2k_2}/L_{1k_2}& 1&\cdots& L_{2k_2}/L_{Nk_2}\\
 \vdots&\vdots&\vdots&\vdots\\
 L_{Nk_N}/L_{1k_N}& L_{Nk_N}/L_{2k_N}&\cdots& 1
@@ -105,6 +105,37 @@ P_N
 where the $k_u,u\in (1, N)$ means that the $u$-th user is distributed to $k$-th cell.
 
 \textbf{Based on the \textit{Perron–Frobenius theorem}, there exists an eigenvector that all the elements are positive. Since $trace(G-I)=0$, there must exist an eigenvalue lager than 0.}
+
+\section{Proof for $\bm{G}^U = (\bm{G}^D)^T$}
+ For 1st user in 1st cell, \textit{i.e.} $k_1=1$
+\begin{align}\label{gammaD}
+\gamma_1 &= \frac{P_1/L_{11}}{\sum_{u\neq 1}^{N}P_{u}/L_{1k_u}} \nonumber\\
+&=\frac{P_1/L_{11}}{\sum_{u=1}^{N}P_{u}/L_{1k_u} - P_1/L_{11}} \nonumber\\
+&= \frac{P_1}{L_{11}\sum_{u=1}^{N}P_{u}/L_{1k_u} - P_1} 
+\end{align}
+The SIR for downlink is represented as
+\begin{align}
+\frac{\gamma+1}{\gamma}\bm{p}^D &= \bm{G}^D\bm{p}^D\\
+\frac{1}{\gamma}\bm{p}^D &= (\bm{G}^D-\bm{I})\bm{p}^D
+\end{align}
+where 
+\begin{align}
+\bm{G}^D = 
+\begin{bmatrix}
+1& L_{1k_1}/L_{1k_2}&\cdots& L_{1k_1}/L_{1k_N}\\
+L_{2k_2}/L_{2k_1}& 1&\cdots& L_{2k_2}/L_{2k_N}\\
+\vdots&\vdots&\vdots&\vdots\\
+L_{Nk_N}/L_{Nk_1}& L_{Nk_N}/L_{Nk_2}&\cdots& 1
+\end{bmatrix}
+\quad
+\bm{p}^D =
+\begin{bmatrix}
+P_{1}\\
+P_{2}\\
+\vdots\\
+P_N
+\end{bmatrix}
+\end{align}
 %\bibliography{PCAref}
 %\bibliographystyle{IEEEtran}
 \end{document}
