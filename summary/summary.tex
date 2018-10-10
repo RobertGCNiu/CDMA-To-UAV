@@ -67,7 +67,7 @@ This section will show that if the effect of noise power on the interfering sign
 
 where the matrix $\bm{G}^U = (\bm{G}^D)^T\in \mathbb{C}^{N\times N}$ is a nonnegative matrix of known parameters whose size depends on the number of mobiles of each cell and whose entries depend on the distances from each user to each base station. $N$ is the total number of users under considered cells. The derivation will be given later.
 
-{\color{red}???The users in CDMA share same bandwidth compared with TD/FDMA, so the data are 3 dimesion.}  SIR balancing is not an eigenvalue problem any more unless intra-cell SIR balancing is assumed and  matrices are simplified to two dimensions\cite{nettleton1983power}. So we set up the assumptions as following:              
+The users in CDMA share same bandwidth compared with TD/FDMA, so the data are 3 dimesion. SIR balancing is not an eigenvalue problem any more unless intra-cell SIR balancing is assumed and  matrices are simplified to two dimensions\cite{nettleton1983power}. So we set up the assumptions as following:              
 \vspace*{3mm}
 \begin{enumerate}
 	\item The service area consists of $K$ cells. The analysis here is general and has less influences due to the shape of the cell.
@@ -103,10 +103,10 @@ In an actual implementation, it would probably be more difficult to acquire the 
 
 We have neglected the effects of shadow fading in this work, which leads to an optimistic results. We will add the fading at next step.
 
-6. \textit{Proposition:}There exists a unique maximum achievable SIR level:
-\begin{equation*}
-\qquad \gamma^{*} = \max\{\gamma | \exists P\geq 0 : \Gamma_i \geq \gamma, \forall i \}
-\end{equation*}
+\textit{Proposition 1}: There exists a unique maximum achievable SIR level:
+\begin{equation}
+ \gamma^{*} = \max\{\gamma | \exists P\geq 0 : \Gamma_i \geq \gamma, \forall i \}
+\end{equation}
 
 %The maximum is given by  
 %\begin{equation*}
@@ -120,7 +120,7 @@ P_{sum} = \sum_{j=1}^N P_j^U \sum_{k=1}^{L_j} \left[ \frac{d_{jkj}}{d_{jki}}\rig
 The signal from the users thus suffer the signal-to-interference ration at the base station:
 \begin{equation*}
 \Gamma_i^U = \frac{P_i^U}{P_{sum}-P_i^U}
-\end{equation*}.
+\end{equation*}
 Hence,
 \begin{equation}
 \frac{1+\gamma_i^U}{\gamma_i^U}P_i^U = \sum_{j=1}^N P_j^U \sum_{k=1}^{L_j} \left[\frac{d_jkj}{d_jki}\right] ^{\alpha}

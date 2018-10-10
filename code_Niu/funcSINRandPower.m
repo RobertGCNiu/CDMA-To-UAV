@@ -1,4 +1,5 @@
-function [p,r] = funcSINRandPower(G)
+%% SNR by eigenvalue decomposition
+function [p,r] = funcSINRandPower(G) 
 N_users = size(G,1);
 G = G-eye(N_users);
 [P_all,Y] = eig(G);
