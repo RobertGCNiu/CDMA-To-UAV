@@ -158,12 +158,12 @@ i=\sum^k_{num=1}L_{num-1}+m \qquad 1\leq m\leq L_{num}
 
 where $L_0$ = 0, $L_k$(n = 1,2,...,N) is the number of active users in cell K at one moment. By using the equations, we can derive the uplink SIR matrix for mobile i in cell k by (2)~(9):
 \begin{equation}
-\gamma_i^U = \frac{g_{ik}P_i}{ \sum_{j\neq i}g_{jk}P_j}
+\gamma_i^U = \frac{g_{ik}P_i}{ \sum\limits_{j\neq i}g_{jk}P_j}
 \end{equation}
 
 We defind $G_{ij}$ = $\frac{g_{jk}}{g_{ik}}$, so that we can get the G matrix as:
 \begin{equation}
-\gamma_i^U = \frac{P_i}{ \sum_{j\neq i}G_{jk}P_j}
+\gamma_i^U = \frac{P_i}{ \sum\limits_{j\neq i}G_{jk}P_j}
 \end{equation}
 
 Proof:There is at least one optimum power vector$ P^*$ satisfy the demend of the PCA, and then it has the form:
@@ -173,7 +173,7 @@ P_i^{U} = P_i^{*U}, i \neq k; P_k^U=0.
 We can obtain the SIR value by equation(12):
 
 \begin{align*}
-\gamma_i^U &= \frac{P_i^U}{\sum_{j=1}^{n}P_j^UG^U_{ij}-P^U_i} =\frac{P_I^{*U}}{\sum_{j=1}^{n}P_j^{*U}G^U_{ij}-P^{*U}_i-P^{*U}_kG^U_{ik}}	\\
+\gamma_i^U &= \frac{P_i^U}{\sum\limits_{j=1}^{n}P_j^UG^U_{ij}-P^U_i} =\frac{P_I^{*U}}{\sum\limits_{j=1}^{n}P_j^{*U}G^U_{ij}-P^{*U}_i-P^{*U}_kG^U_{ik}}	\\
 &\geq \gamma_i^{*U}\geq \gamma_0, i \neq k.
 \end{align*}	
 
