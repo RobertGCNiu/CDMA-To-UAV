@@ -56,7 +56,7 @@ The remainder of the paper is organized as follows. Section II presents the inte
 
 
 
-\section{System Model}
+\section{Initial System Model}
 This section will show that if the effect of noise power on the interfering signal experienced is sufficiently small to be neglected, formulating the power control problem mathematically leads to an eigenvalue problem involving positive matrices. If we let $\gamma_d$ and $\gamma_u$ denote the desired downlink and uplink SIR’s, respectively, for all users, Nettleton and Alavi [1] showed that the balanced power vectors, $\bm{p}^D$ and $\bm{p}^U$ must satisfy the eigenvalue problems:
 \begin{align}
 \bm{G}^U \bm{p}^U = \frac{1+\gamma^U}{\gamma^U}\bm{p}^U \\
@@ -65,9 +65,9 @@ This section will show that if the effect of noise power on the interfering sign
 
 
 
-where the matrix $\bm{G}^U = (\bm{G}^D)^T\in \mathbb{C}^{N\times N}$ is a nonnegative matrix of known parameters whose size depends on the number of mobiles of each cell and whose entries depend on the distances from each user to each base station. $N$ is the total number of users under considered cells. The derivation will be given later.
+where the matrix $\bm{G}^U = (\bm{G}^D)^T\in \mathbb{C}^{N\times N}$ , that we prove in the appendix, is a nonnegative matrix of known parameters whose size depends on the number of mobiles of each cell and whose entries depend on the distances from each user to each base station. $N$ is the total number of users under considered cells. The derivation will be given later.
 
-The users in CDMA share same bandwidth compared with TD/FDMA, so the data are 3 dimesion. SIR balancing is not an eigenvalue problem any more unless intra-cell SIR balancing is assumed and  matrices are simplified to two dimensions\cite{nettleton1983power}. So we set up the assumptions as following:              
+The users in CDMA share same bandwidth compared with TD/FDMA, so the data have three dimension. SIR balancing is not an eigenvalue problem any more unless intra-cell SIR balancing is assumed and  matrices are simplified to two dimensions\cite{nettleton1983power}. So we set up the assumptions as following:              
 \vspace*{3mm}
 \begin{enumerate}
 	\item The service area consists of $K$ cells. The analysis here is general and has less influences due to the shape of the cell.
@@ -90,10 +90,11 @@ The users in CDMA share same bandwidth compared with TD/FDMA, so the data are 3 
 
 \begin{figure}[th]
 	\centering
-	\includegraphics[scale=0.3]{t}
+	\includegraphics[scale=0.25]{geomatrix}
 	\caption{Uplink and downlink interference geometry.}
-	\label{fig:t}
+	\label{fig:geomatrix}
 \end{figure}
+
 
 Abviously, it's easy to know that
 \begin{equation}
@@ -156,42 +157,71 @@ Up to now, it caused a problem because of the matrix' composition. Each row or c
 i=\sum^k_{num=1}L_{num-1}+m \qquad 1\leq m\leq L_{num}
 \end{equation}  
 
-where $L_0$ = 0, $L_k$(n = 1,2,...,N) is the number of active users in cell K at one moment. By using the equations, we can derive the uplink SIR matrix for mobile i in cell k by (2)~(9):
+where $L_0$ = 0, $L_k$(n = 1,2,...,N) is the number of active users in cell k at one moment. By using the equations, we can derive the uplink SIR matrix for mobile i in cell k by (2) - (9):
 \begin{equation}
 \gamma_i^U = \frac{g_{ik}P_i}{ \sum\limits_{j\neq i}g_{jk}P_j}
 \end{equation}
 
 We defind $G_{ij}$ = $\frac{g_{jk}}{g_{ik}}$, so that we can get the G matrix as:
-\begin{equation}
-\gamma_i^U = \frac{P_i}{ \sum\limits_{j\neq i}G_{jk}P_j}
+\begin{equation} \label{gammaiu}
+\gamma_i^U = \frac{P_i}{ \sum\limits_{j\neq i}G_{ij}P_j}
+\end{equation}
+Thus, the G geometry of uplink can be express as:
+\begin{equation} \label{GU}
+\bm G^U = \left[ \begin{matrix}
+\frac{g_{11}}{g_{11}}&\frac{g_{21}} {g_{11}} &\cdots&\frac{g_{n1}}{g_{11}}\\\\
+
+\frac{g_{11}}{g_{21}}&\frac{g_{21}}{g_{21}} &\cdots&\frac{g_{n1}}{g_{21}}\\
+\vdots&\vdots&\ddots&\vdots&\\  
+
+\frac{g_{12}}{g_{L_1,1}}&\frac{g_{21}}{g_{L_1,1}}&\cdots&\frac{g_{n1}}{g_{L_1,1}}\\ \\
+
+\frac{g_{12}}{g_{L_1+1,2}}&\frac{g_{22}}{g_{L_1+1,2}}&\cdots&\frac{g_{n2}}{g_{L_1+1,2}}\\ 
+
+\vdots&\vdots&\ddots&\vdots&\\  
+
+\frac{g_{12}}{g_{L_1+L_2,2}}&\frac{g_{22}}{g_{L_1+L_2,2}}&\cdots&\frac{g_{n2}}{g_{L_1+L_2,2}}\\\\
+
+\vdots&\vdots&\ddots&\vdots&\\  \\
+\frac{g_{1N}}{g_{nN}}&\frac{g_{2N}}{g_{nN}}&\cdots&\frac{g_{nN}}{g_{nN}}\\
+\end{matrix}\right]
 \end{equation}
 
-Proof:There is at least one optimum power vector$ P^*$ satisfy the demend of the PCA, and then it has the form:
-\begin{equation*}
-P_i^{U} = P_i^{*U}, i \neq k; P_k^U=0.
-\end{equation*}
-We can obtain the SIR value by equation(12):
+\textbf{Define}: Compared with the initial power vector $P^*$, there is at least one optimum power vector P, of which the u-th power is zero, satisfy the demend of the PCA and have a better SIR value, then it has the form:
+\begin{align*}
+&P_i^{U} = P_i^{*U}, i \neq u;\\
+&P_u^U=0,  \quad\ i = u.
+\end{align*}
+
+\textbf{proof}: We can obtain the SIR value by equation(\ref{gammaiu}):
 
 \begin{align*}
-\gamma_i^U &= \frac{P_i^U}{\sum\limits_{j=1}^{n}P_j^UG^U_{ij}-P^U_i} =\frac{P_I^{*U}}{\sum\limits_{j=1}^{n}P_j^{*U}G^U_{ij}-P^{*U}_i-P^{*U}_kG^U_{ik}}	\\
-&\geq \gamma_i^{*U}\geq \gamma_0, i \neq k.
+\gamma_i^U &= \frac{P_i^U}{\sum\limits_{j=1}^{n}P_j^UG^U_{ij}-P^U_i}\\& =\frac{P_I^{*U}}{\sum\limits_{j=1}^{n}P_j^{*U}G^U_{ij}-P^{*U}_i-P^{*U}_kG^U_{ik}}	\\
+&\geq \gamma_i^{*U}\geq \gamma_0,( i \neq k).
 \end{align*}	
 
-P achieves a SIR that is not less than $\gamma_0$ while this is absolutely  achieved by $P^*$. Therefore, P is also an optimal vector. SO the removal will leads to a better SIR rather than make it decreased. 
+P achieves a SIR that is not less than $\gamma_0$ while this is absolutely  achieved by $P^*$. Therefore, P is also an optimal vector. So the removal will leads to a better SIR rather than make it decreased. 
 
 Besides, there is a new algorithm, which is called SRA, will need n eigenvalue computations in the worst case, while it will cost $n^2$ times roughly by removing the user freely. This action means the BS cannot maintain the communication among the exist users, so we need to canceled the user or set up a new BS for the demands.
 
 \vspace*{3mm}
 \textbf{Stepwise Removal Algorithm$\left( \textbf{SRA} \right)$}              
+\begin{enumerate}
+	\item Step 1: Determine $\gamma^*$ corresponding to G. if $\gamma^* \geq\gamma^U_0$, then use the eigenvector $P^*$ and stop; else set $ G' \left( \in\mathbb{C}^{n\times n}\right) \ =\ G\left( \in \mathbb{C}^{n\times n}\right)  $ and follow step 2.
+	
+	\item Step 2: Remove user u for which the maximum of th row and colunm sums
+	
+	\begin{align*}
+	r_u = \sum_{j=1}^{n} G^{U'}_{uj}\\
+	r_u^{T} = \sum_{j=1}^{n} G^{U'}_{ju}
+	\end{align*}
+	is maximized and form the $ G' \left( \in\mathbb{C}^{n\times n}\right)   $ matrix. 
+	Determine the $\gamma^*$ correspoding to $ G' \left( \in\mathbb{C}^{n\times n}\right)   $ by(9) ,where $\gamma^*$ is the minimum of the SIR we can get, Furthermore, if the $\gamma^*$ is still bigger than the limitation, of which can maintain the communication, use the eigenvector $P^*$,  set $ G' \left( \in\mathbb{C}^{n\times n}\right) \ =\ G\left( \in \mathbb{C}^{n-1\times n-1}\right)  $, and repeat step 2.
 
-(1)Step 1: Determine $\gamma^*$ corresponding to G. if $\gamma^*$ $\geq$ $\gamma^U_0$, then use the eigenvector $P^*$ and stop; else set N'=N and follow step 2.
+\end{enumerate}
 
-(2)Step 2: Remove cell i for which the maximum of th row and colunm sums
-\begin{align*}
-r_k = \sum_{j=1}^{n} G^{U'}_{kj}\\
-r_k^{T} = \sum_{j=1}^{n} G^{U'}_{jk}
-\end{align*}
-is maximized and form the (Q'-1) $\times$ (Q'-1) matrix G'. Determine the $\gamma^*$ correspoding to G' by(9) ,where $\gamma^*$ is the minimum of the SIR we can get, Furthermore, if the $\gamma^*$ is still bigger than the limitation, of which can maintain the communication, use the eigenvector $P^*$, else set Q' = Q'-1, and repeat step 2.
+
+
 
 \textbf{Stepwise Maximum-Inteference Removal Algorithm $\left( \textbf{SMIRA} \right)$}              
 The SMIRA is the same like SRA except the step 2, user k is removed if the maximum fo the sums 

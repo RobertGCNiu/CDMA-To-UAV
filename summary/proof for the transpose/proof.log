@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6800 64-bit) (preloaded format=pdflatex 2018.9.27)  10 OCT 2018 20:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6800 64-bit) (preloaded format=pdflatex 2018.9.27)  15 OCT 2018 12:28
 entering extended mode
 **./proof.tex
 (proof.tex
@@ -515,7 +515,7 @@ Non-PDF special ignored!
 [2] [3] (proof.aux) ) 
 Here is how much of TeX's memory you used:
  4161 strings out of 492972
- 55232 string characters out of 3126178
+ 55372 string characters out of 3126178
  137610 words of memory out of 3000000
  7908 multiletter control sequences out of 15000+200000
  17319 words of font info for 64 fonts, out of 3000000 for 9000
