@@ -223,23 +223,64 @@ Besides, there is a new algorithm, which is called SRA, will need n eigenvalue c
 
 
 
-\textbf{Stepwise Maximum-Inteference Removal Algorithm $\left( \textbf{SMIRA} \right)$}              
+\textbf{Stepwise Maximum-Inteference Removal Algorithm $\left( \textbf{SMIRA} \right)$}  
+          
 The SMIRA is the same like SRA except the step 2, user k is removed if the maximum fo the sums 
 \begin{equation}
-r_k = \sum_{j=1}^{n}G^{U'}_{kj}P_j,\qquad r_k^{T} = \sum_{j=1}^{n}G^{U'}_{jk}P_k
+r_u = \sum_{j=1}^{n}G^{U'}_{uj}P_j,\qquad r_u^{T} = \sum_{j=1}^{n}G^{U'}_{ju}P_u
 \end{equation}
 is maximized.
 
-$r_k$ represents the total interference for user k in the uplink and $r_k^T$ of it represents the total interference to other users caused by user k[6], although they cannot represent these two concept exactly.  
+$r_k$ represents the total interference for user k in the uplink and $r_u^T$ of it represents the total interference to other users caused by user u \cite{wu1999performance}. Sometimes, the link gain cannot represent the interference clearly, so as to times the power vector, it can be more accuracy, although they still cannot represent these two concept exactly.  
 
 \section{Numerical Result}
+To derive the numerical result of the system model, more assumptions for simulation are given as following. The system includes a total 4 square cells, and a cluster of 16 cell at the final simulation, at the center there is the base station with omni-directional antennas. The mobiles are located randomly with a uniform density, which means every cell has the same number of users, and transport the signal at a constant rate. The link gain $G_{ij}$ is describe as: $G_{ij}$ = $\frac{A_{ij}}{d_{ij}^\alpha}$, where $\textbf{A}$ is the fading component with 0dB in this case. $d_{ij}$ is the propagation distance and $\alpha$ is the path loss exponent, which we set $\alpha$ = 3 here. Furthermore, there is a minimization of distance $d_0$, when the propagation distance is less than $d_0$, we should set the distance equal to $d_0$. Besides, the system model will be improved by the UAV channels. The situation becomes more complicated while they have a same properties. 
 
-Tips:
-1.we need the result of the simulation among the system without PCA, with in-cell PCA and with global PCA. Then we find that set all cell to be equal has the best performance, that can provide more users per cell.
+Fig\ref{fig:initial-global-pca} describes the relationship between SIR and the number of users per cell with the initial algorithm. The  value of SIR has a threshold, of which we set as -20dB. So that we can make sure the range of the capacity and do the simulation more accuracy. 
 
-2.Then we can compared the SRA with SMIRA, to find the probability of outage. And then use the better algorithm in step 1.
+In Fig\ref{fig:performance-compared}, we change the algorithm by the SRA. Then the figure shows the SIR value, for the uniform distribution case, with cell to cell balancing, removing the users whose interference have the worst effects. Uplink and downlink results are distinguishable distribution. For this case, we just list the uplink performance in Fig\ref{fig:performance-compared}. The latter cancels the PCA algorithm and set the users' transmit power all to be equal, and choose the worst-performance user's SIR. All the values get from an average of 500-time iterations. The results of the two types of SIR are barely distinguishable, particularly when the number of users reaches 50, that the worst SIR is extremely lower than the balancing one. 
 
-3.If there are n users without their state information, we choose the nearest BS for the user, and do the step 1. Then we change the user's BS if the $\gamma$ is lower than the limitation. 
+Fig\ref{fig:performance-compared-with-sra} noted the performance achieved by the SRA, SMIRA and original algorithm, with global SIR balancing and perfect average power control of N=16, the spreading channel rate are constant, and also have a omni-directional antennas. We set the SIR threshold for -10dB for the removing algorithm. Thus, the system has at least a -10dB SIR performance, and cannot support the users be removed. The moving algorithm is just the same with removing algorithm, except change the user, of which cannot achieve the standard SIR, belong to another BS instead of canceling the users. It behaves better than the original one but not much. However, it solves the problem of assignments of the users, so as to be more flexible than the original one.   
+%Tips:
+%1.we need the result of the simulation among the system without PCA, with in-cell PCA and with global PCA. Then we find that set all cell to be equal has the best performance, that can provide more users per cell.
+%
+%2.Then we can compared the SRA with SMIRA, to find the probability of outage. And then use the better algorithm in step 1.
+%
+%3.If there are n users without their state information, we choose the nearest BS for the user, and do the step 1. Then we change the user's BS if the $\gamma$ is lower than the limitation. 
+
+\begin{figure}[th]
+	\centering
+	\includegraphics[width=0.65\linewidth]{"initial global PCA"}
+	\caption{Initial Global PCA}
+	\label{fig:initial-global-pca}
+\end{figure}
+
+
+\begin{figure}[th]
+	\centering
+	\includegraphics[width=0.65\linewidth]{"performance compared"}
+	\caption{SIR with Fully Balanced Systems vs. without Balanced Systems }
+	\label{fig:performance-compared}
+\end{figure}
+
+
+ 
+\begin{figure}[th]
+	\centering
+	\includegraphics[width=0.65\linewidth]{"performance compared with SRA"}
+	\caption{SIR Comparison}
+	\label{fig:performance-compared-with-sra}
+\end{figure}
+
+
+
+
+% fig 2 performance in global PCA for four cells
+% fig 3 performance with global PCA and without PCA
+% fig 4 performance compared removing algorithm, initial algorithm.
+
+
+
 
 
 \section{Conclusion}

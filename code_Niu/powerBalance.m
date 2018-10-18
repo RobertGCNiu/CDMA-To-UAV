@@ -6,7 +6,7 @@ clear; clc;
 
 ITER = 500;
 %ITER = 1;
-users_sets = 20:10:60;
+users_sets = 10:5:30;
 %users_sets = 50;
 r_N_remove = zeros(length(users_sets),1); % removing algorithm
 remove_N = zeros(length(users_sets),1); % the removing number
@@ -111,5 +111,8 @@ plot(users_sets,r_N_remove,'LineWidth',1.5);
 plot(users_sets, r_N_move,'LineWidth',1.5); 
 plot(users_sets, r_org,'LineWidth',1.5)
 legend('removing', 'moving', 'original');
-
+ title(' Distance Based Power Control Algorithm');
+ xlabel('Number of Users');
+ ylabel('SIR');
+   
 %%
